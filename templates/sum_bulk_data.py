@@ -25,7 +25,15 @@ for participant in participants:
   for bulkFile in bulkFilesToCheck:
     readBulkFile = open(bulkFile, 'r')
     bulkFileValue = readBulkFile.readline().rstrip()
-    participant_to_phenotypic_value[participant] = [participant_to_phenotypic_value[participant], bulkFileValue, participant_to_phenotypic_value[participant] * float(bulkFileValue)]
+    if '$mathOperation' == 'sum':
+      newValue = participant_to_phenotypic_value[participant] + float(bulkFileValue)
+    elif '$mathOperation' == 'division':
+      newValue =  float(bulkFileValue) / participant_to_phenotypic_value[participant]
+    elif '$mathOperation' == 'subtraction':
+      newValue =  float(bulkFileValue) - participant_to_phenotypic_value[participant]
+    else:
+      newValue = participant_to_phenotypic_value[participant] * float(bulkFileValue)
+    participant_to_phenotypic_value[participant] = [participant_to_phenotypic_value[participant], bulkFileValue, newValue]
 
 resultsFile = open('./bulk_sum.csv', 'w')
 
