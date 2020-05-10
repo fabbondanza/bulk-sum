@@ -34,8 +34,10 @@ for participant in participants:
     else:
       newValue = participant_to_phenotypic_value[participant] * float(bulkFileValue)
     participant_to_phenotypic_value[participant] = [participant_to_phenotypic_value[participant], bulkFileValue, newValue]
+    with open(bulkFile + '.modified', 'w') as modifiedBulkFile:
+      modifiedBulkFile.write(str(newValue))
 
-resultsFile = open('./bulk_sum.csv', 'w')
+resultsFile = open('./bulk_results.csv', 'w')
 
 resultsFile.write('{}\\n'.format(','.join(['eid','phenotypeFieldValue','bulkFileValue','newValue'])))
 

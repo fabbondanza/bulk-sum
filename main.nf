@@ -15,8 +15,9 @@ process sumBulkData {
 
   output:
   file '*.csv'
+  file '*.modified'
 
   script:
-  template 'sum_bulk_data.py'
+  template 'bulk_data_operations.py'
 
 }
