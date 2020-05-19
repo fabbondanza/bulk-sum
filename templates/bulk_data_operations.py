@@ -29,6 +29,8 @@ for participant in participants:
       newValue = participant_to_phenotypic_value[participant] + float(bulkFileValue)
     elif '$mathOperation' == 'division':
       newValue =  float(bulkFileValue) / participant_to_phenotypic_value[participant]
+    elif '$mathOperation' == 'duplicate':
+      newValue =  float(bulkFileValue) * 2
     elif '$mathOperation' == 'subtraction':
       newValue =  float(bulkFileValue) - participant_to_phenotypic_value[participant]
     else:
